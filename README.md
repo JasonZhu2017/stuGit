@@ -43,13 +43,13 @@ Git 自带一个 git config 的工具来帮助设置控制 Git 外观和行为
 
 #### 1.1.3.3查看配置信息
 > `git config --list`   //列出全部配置信息，重复信息已最后一次为准
-> 
 > `git config <key>`    //查看特定项配置，如user.name
 
 ### 1.1.4 获取帮助
 > `git help <verb>` //如:git help config 
 > `git <verb> --help`
 > `man git <verb>`
+
 ---
 
 ## 2.1 获取 Git 仓库(repository)
@@ -70,6 +70,7 @@ Git 自带一个 git config 的工具来帮助设置控制 Git 外观和行为
 ## 2.2 记录每次更新到仓库
 **工作目录**的文件有两类状态，已跟踪、未跟踪。
 **已跟踪**的文件有三种子状态，已修改、未修改、已暂存。
+
 + 已跟踪
 > 已修改、未修改、已暂存
 + 未跟踪
@@ -97,15 +98,52 @@ Git 自带一个 git config 的工具来帮助设置控制 Git 外观和行为
 > `git diff`    //查看当前文件与暂存区的区别
 > `git diff --staged`   //查看已暂存需要下次提交的内容（--cached老用法）
 
-### 2.5.6 提交更新
+### 2.2.6 提交更新
 > `git commit`  //启动编辑器输入相应的修改批注
 > `git commit -m "modified xxx` //-m后为提交信息
 > `git commit -a -m "modified xxx"` //暂存、提交一起完成。
 
-### 2.5.7 移除文件
-> ``
+### 2.2.7 移除文件
+> `git rm [file]` //将未修改文件，文件将从暂存区、工作目录删除，在commit后将从Git仓库中移除。
+> `git rm -f [file]`    //将已修改文件或者已暂存未提交，-f强制删除
+> `rm [file]`   //仅从工作目录中删除，需要追加git rm才能从暂存区删除，在commit后从git仓库中删除。
+> `git rm --cached [file]`  //从暂存区中删除，保留在工作目录，进入未跟踪状态。而**git reset HEAD \[file\]只是会退到为暂存状态**
 
+### 2.2.8 移动文件
+> `git mv [from] [to]`  //等效如下三步
+> + `mv [from] [to]`
+> + `git rm [from]`
+> + `git add [to]`
 
+---
+
+## 2.3 查看提交历史
+> `git log` //基本查看
+> `git log -p -2` //-p 显示每次提交的内容差异, -2 最近两次提交
+
+![更多字段配置](./res/git_log_ex.png)
+![字段配置表](./res/git_log.png)
+
+> + --pretty=oneline    //pretty关键字是表示偏好，oneline表示一行显示
+> + --pretty=short
+> + --pretty=full
+> + --pretty=fuller 
+> + --pretty=format:"%h - %an, %ar: %s" //自定义格式化输出
+![格式化输出](./res/pretty_format.png)
+
+---
+
+## 2.4 撤销操作
+### 修改最后一次提交
+> `git commit --amend`  //重新提交
+
+### 取消已经暂存的文件
+> `git reset HEAD [file]`   //撤销对文件的暂存恢复到未暂存/已修改状态 vs git add [file]
+
+### 取消对文件的修改
+> `git checkout -- [file]`  //撤销对文件的修改。恢复到未修改状态。
+
+---
 
 ## 2.5 远程仓库使用 
 > remote 作为远程仓库的代称，再没有指定名字的情况下默认用origin名。
@@ -131,34 +169,35 @@ Git 自带一个 git config 的工具来帮助设置控制 Git 外观和行为
 ### 2.5.6 远程仓库的删除和重命名(本地删除)
 > `git remote rename [old-name] [new-name]`
 > `git remote rm [remote-name]`
+
 ---
 
 ## 2.6 打标签
-### 列出已有标签
+### 2.6.1 列出已有标签
 > `git tag`
 > `git tag -l 'v-1.4'` //列出相关标签
 
-### 新建标签
-#### 含标注的标签(annotated)
+### 2.6.2 新建标签
+#### 2.6.2.1 含标注的标签(annotated)
 > `git tag -a v1.4` //-a含标注标签必须 
 > `git tag -a v1.5 -m 'version 1.5'`    //-m增加对标签的说明
 
-#### 轻量级标签(lightweight)
+#### 2.6.2.2 轻量级标签(lightweight)
 > `git tag v1.4`    //直接加标签名
 
-### 显示标签的信息
+### 2.6.3 显示标签的信息
 > `git show v1.4`    //显示含v1.4标签的版本信息
 
-### 签署标签(GPG签署)
+### 2.6.4 签署标签(GPG签署)
 > `git tag -s v1.5 -m 'my signed 1.5 tag'` //-s(signed)
 
-### 验证标签
+### 2.6.5 验证标签
 > `git tag -v [tag-name]`   //-v(verify)验证已签署的标签
 
-### 加注标签
+### 2.6.6 加注标签
 > `git tag -a v1.2 9fceb02` //9fceb02是待打标签对象的校验和头部
 
-### 分享标签
+### 2.6.7 分享标签
 > `git push origin [tag-name]` //git push不会把标签推至远端，必须显示调用
 > `git push origin --tags`  //一次从推送所有本地新增标签至远端
 
