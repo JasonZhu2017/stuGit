@@ -36,7 +36,7 @@ Git 自带一个 git config 的工具来帮助设置控制 Git 外观和行为
 
 #### 1.1.3.1 用户信息
 > `git config --global user.name "John Doe"`    //姓名 
-> `git config --global user.email johndoe@example.com`  //邮箱
+`git config --global user.email johndoe@example.com`  //邮箱
 
 #### 1.1.3.2 文本编辑器
 > `git config --global core.editor emacs` //缺省配置为系统默认的文本编辑器，通常为vim
