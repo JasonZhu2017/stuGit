@@ -15,7 +15,7 @@
 + 已提交 commited 
 > 数据已经安全的保存在本地数据库中
 + 已修改 modified
-> 示修改了文件，但还没保存到数据库中
+> 表示修改了文件，但还没保存到数据库中
 + 已暂存 staged
 > 表示对一个已修改文件的当前版本做了标记，使之包含在下次提交的快照中
 
@@ -35,7 +35,7 @@ Git 自带一个 git config 的工具来帮助设置控制 Git 外观和行为
 以上三处配置从上至下会被下一个配置覆盖。
 
 #### 1.1.3.1 用户信息
-> `git config --global user.name "John Doe"`    //姓名
+> `git config --global user.name "John Doe"`    //姓名 
 > `git config --global user.email johndoe@example.com`  //邮箱
 
 #### 1.1.3.2 文本编辑器
@@ -43,6 +43,7 @@ Git 自带一个 git config 的工具来帮助设置控制 Git 外观和行为
 
 #### 1.1.3.3查看配置信息
 > `git config --list`   //列出全部配置信息，重复信息已最后一次为准
+> 
 > `git config <key>`    //查看特定项配置，如user.name
 
 ### 1.1.4 获取帮助
