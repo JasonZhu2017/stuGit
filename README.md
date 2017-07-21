@@ -202,4 +202,90 @@ Git 自带一个 git config 的工具来帮助设置控制 Git 外观和行为
 > `git push origin [tag-name]` //git push不会把标签推至远端，必须显示调用
 > `git push origin --tags`  //一次从推送所有本地新增标签至远端
 
+---
+
+## 3 branch分支
+> 示例用的分支名为**testbh**
+
+### 3.1 创建
+> git branch **testbh**        //创建分支
+> git checkout -b **testbh**   //创建并切换分支
+
+### 3.2 切换
+> git checkout **testbh**      //切换分支
+> git checkout -b **testbh**   //创建并切换
+
+### 3.3 合并
+> git checkout master               //step1 切换到目标分支
+> git merge **testbh**         //step2 将testbh分支合入master分支
+
+##### 合并冲突
+> git status //查看存在的冲突信息
+> git mergetool //启动可视化冲突处理工具
+> git commit //解决冲突后提交
+
+### 3.4 分支管理
+#### 删除
+> git branch **-d** testbh     //将**本地**testbh分支删除
+
+#### 查看
+> git log --oneline --decorate      //查看日志中相关的分支记录
+> git log --oneline --decorate --graph --all //显示分支间的关系
+> git branch -v     //查看每个分支的最后一次提交
+> git branch --merged //查看合并的分支提交信息
+> git branch --nomerged //查看未合并的分支提交信息
+
+### 更新
+> git fetch //从远程仓库（此处默认的仓库为origin）中抓取本地没有的数据
+> git fetch origin //抓取origin仓库的数据
+> git fetch test_repo //从test_repo中抓取本地没有的数据
+> git merge origin/serverfix //将从远程fetch的serverfix分支合入当前分支
+> git checkout -b serverfix origin/serverfix //创建并切换至serverfix分支，合入来之远程的origin/serverfix分支
+> git push (remote) (branch) //往remote仓库推送本地的branch分支
+> git push (remote) (local:dest) //将本地的local分支推送至remote仓库中的dest分支
+> git push --force  //???
+
+## 3.5 远程分支
+### 3.5.1 远程仓库与分支
+
+> 一个仓库里包含多个分支，远程仓库的代称为remote,分支代称为branch。将**远程仓库的默认分支**拉取到本地后的引用为(remote)/(branch)结构，默认名称为origin/master
++ 远程引用：对远程仓库的引用（指针）。
++ 远程跟踪分支：对远程分支状态的引用。 
+> git remote    //获得远程仓库列表
+> git ls-remote [remote-repo] //显示获取远程引用完整列表
+> git remote show [remote-repo] //获得远程分支更多信息
+
+> git clone -o xxx //克隆远程仓库并将远程仓库的默认命名改为xxx
+> git remote add [remote-repo] [URL] //创建新远程仓库的引用为remote-repo/master
+> git fetch [remote-repo]   //拉取远程仓库
+> git fetch --all   //
+> git push [remote-repo] [remote-branch]   //推送到远程分支
+> git push [remote-repo] [local-branch]:[remote-branch]   //,需要先fetch
+> git merge [remote-repo]/[remote-branch] //将remote-branch合入当前分支
+> git checkout -b [new-branch] [remote-repo]/[remote-branch] //将remote-branch合入到新分支[new-branch],需要先fetch
+> git branch -a     //查看分支列表
+> git branch -vv    //查看分支列表
+> git push [remote-repo] --delete [remote-branch]   //删除远程分支
+
+## 3.6 变基
+**分支合并方式：快进（fast-forward)、三方合并、变基**
+> 变基：使用 rebase 命令将提交到某一分支上的所有修改都移至另一分支上，就好像“重新播放”一样。变基使得提交历史更加整洁。一般我们这样做的目的是为了确保在向远程分支推送时能保持提交历史的整洁。
+> 基本原则：不要对在你的仓库外有副本的分支执行变基。
+
+### 元操作
+> git checkout testbh   //切换到testbh分支
+> git rebase master     //在目标基地上进行变基操作，将testbh相对二者最近祖先的变动，作用在master上，得到新的testbh
+> git checkout master   //切回master
+> git merge testbh  //master分支快速合入
+
+### 多分支变基
+> git rebase --onto master server client    //取出 client 分支，找出处于 client 分支和 server 分支的共同祖先之后的修改，然后把它们在 master 分支上重放一遍，得到client分支
+
+> git rebase [basebranch] [topicbranch] //topicbranch在basebranch上变基。
+
+### 变基冲突解决
+> 如果对远程仓库的依赖部分发生了变基需要进行二次变基以解决问题。
+> git rebase [remote/branch]    //remote/branch 为已经发生变基的依赖分支，与git fetch 连用
+> git pull --rebase //替代git pull 实现变基合并。
+
 
