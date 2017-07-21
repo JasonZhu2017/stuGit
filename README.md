@@ -1,4 +1,5 @@
 # git基础教程 
+![git关系图](./res/gitRepoes.png)
 ---
 ## 1.1 Git基础
 ### 1.1.1 Git项目的三个工作区域
