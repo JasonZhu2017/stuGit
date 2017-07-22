@@ -114,9 +114,7 @@ Git 自带一个 git config 的工具来帮助设置控制 Git 外观和行为
 
 ### 2.2.8 移动文件
 + `git mv [from] [to]`  //等效如下三步
-> 1. `mv [from] [to]`
-> 2. `git rm [from]`
-> 3. `git add [to]`
+> `mv [from] [to]`； `git rm [from]`； `git add [to]`
 
 ---
 
