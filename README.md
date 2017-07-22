@@ -227,7 +227,7 @@ Git 自带一个 git config 的工具来帮助设置控制 Git 外观和行为
 
 ### 3.4 分支管理
 #### 3.4.1 删除
-+ `git branch **-d** testbh`     //将**本地**testbh分支删除
++ `git branch -d testbh`     //将**本地**testbh分支删除
 
 #### 3.4.2 查看
 + `git log --oneline --decorate`      //查看日志中相关的分支记录
@@ -265,6 +265,7 @@ Git 自带一个 git config 的工具来帮助设置控制 Git 外观和行为
 + `git push origin serverfix` //同名，将本地分支推送到远程分支severfix。
 + `git push origin serverfix:serverfix` //同名，推送本地的serverfix分支作为远程仓库的serverfix分支。
 + `git push origin serverfix:new-branch`    // 改名，推送本地的serverfix分支到远程的new-branch分支。
++ `git push -u origin local-branch:remote-branch`   //推送同时做分支跟踪(设置up-stream)。
 注意：
 > 当其他用户从远程拉去仓库时(git fetch origin),本地并没有新的分支(serverfix),只有不可修改的远程分支的指针(origin/serverfix),此时有两种选择
 > + 合入到当前分支：`git merge origin/serverfix`;
