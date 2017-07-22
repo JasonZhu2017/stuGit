@@ -250,14 +250,12 @@ Git 自带一个 git config 的工具来帮助设置控制 Git 外观和行为
 
 ## 3.5 远程分支
 ### 3.5.1 远程仓库与分支
-
-+ 一个仓库里包含多个分支，远程仓库的代称为remote,分支代称为branch。将**远程仓库的默认分支**拉取到本地后的引用为(remote)/(branch)结构，默认名称为origin/master
++ 一个仓库里包含多个分支，远程仓库的代称为remote,分支代称为branch。将**远程仓库的默认分支**拉取到本地后的引用为(remote)/(branch)结构，默认名称为origin/master。
 + 远程引用：对远程仓库的引用（指针）。
 + 远程跟踪分支：对远程分支状态的引用。 
 + `git remote`    //获得远程仓库列表
 + `git ls-remote [remote-repo]` //显示获取远程引用完整列表
 + `git remote show [remote-repo]` //获得远程分支更多信息
-
 + `git clone -o xxx` //克隆远程仓库并将远程仓库的默认命名改为xxx
 + `git remote add [remote-repo] [URL]` //创建新远程仓库的引用为remote-repo/master
 + `git fetch [remote-repo]`   //拉取远程仓库
@@ -306,8 +304,7 @@ Git 自带一个 git config 的工具来帮助设置控制 Git 外观和行为
 + `git merge testbh`  //master分支快速合入
 
 ### 3.6.2 多分支变基
-+ `git rebase --onto master server client`    //取出 client 分支，找出处于 client 分支和 server 分支的共同祖先之后的修改，然后把它们在 master 分支上重放一遍，得到client分支
-
++ `git rebase --onto master server client`    //取出 client 分支，找出处于 client 分支和 server 分支的共同祖先之后的修改，然后把它们在 master 分支上重放一遍，得到client分支。
 + `git rebase [basebranch] [topicbranch]` //topicbranch在basebranch上变基。
 
 ### 3.6.3 变基冲突解决
