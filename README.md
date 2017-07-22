@@ -127,11 +127,11 @@ Git 自带一个 git config 的工具来帮助设置控制 Git 外观和行为
 ![更多字段配置](./res/git_log_ex.png)
 ![字段配置表](./res/git_log.png)
 
-> + --pretty=oneline    //pretty关键字是表示偏好，oneline表示一行显示
-> + --pretty=short
-> + --pretty=full
-> + --pretty=fuller 
-> + --pretty=format:"%h - %an, %ar: %s" //自定义格式化输出
++ --pretty=oneline    //pretty关键字是表示偏好，oneline表示一行显示
++ --pretty=short
++ --pretty=full
++ --pretty=fuller 
++ --pretty=format:"%h - %an, %ar: %s" //自定义格式化输出
 
 ![格式化输出](./res/pretty_format.png)
 
@@ -211,42 +211,42 @@ Git 自带一个 git config 的工具来帮助设置控制 Git 外观和行为
 + 示例用的分支名为**testbh**
 
 ### 3.1 创建
-+ git branch **testbh**        //创建分支
-+ git checkout -b **testbh**   //创建并切换分支
++ `git branch **testbh**`        //创建分支
++ `git checkout -b **testbh**`   //创建并切换分支
 
 ### 3.2 切换
-+ git checkout **testbh**      //切换分支
-+ git checkout -b **testbh**   //创建并切换
++ `git checkout **testbh**`      //切换分支
++ `git checkout -b **testbh**`   //创建并切换
 
 ### 3.3 合并
-+ git checkout master               //step1 切换到目标分支
-+ git merge **testbh**         //step2 将testbh分支合入master分支
++ `git checkout master `              //step1 切换到目标分支
++ `git merge **testbh**`         //step2 将testbh分支合入master分支
 
 #### 3.3.1 合并冲突
-+ git status //查看存在的冲突信息
-+ git mergetool //启动可视化冲突处理工具
-+ git commit //解决冲突后提交
++ `git status` //查看存在的冲突信息
++ `git mergetool` //启动可视化冲突处理工具
++ `git commit` //解决冲突后提交
 
 ### 3.4 分支管理
 #### 3.4.1 删除
-+ git branch **-d** testbh     //将**本地**testbh分支删除
++ `git branch **-d** testbh`     //将**本地**testbh分支删除
 
 #### 3.4.2 查看
-+ git log --oneline --decorate      //查看日志中相关的分支记录
-+ git log --oneline --decorate --graph --all //显示分支间的关系
-+ git branch -v     //查看每个分支的最后一次提交
-+ git branch --merged //查看合并的分支提交信息
-+ git branch --nomerged //查看未合并的分支提交信息
++ `git log --oneline --decorate`      //查看日志中相关的分支记录
++ `git log --oneline --decorate --graph --all` //显示分支间的关系
++ `git branch -v`     //查看每个分支的最后一次提交
++ `git branch --merged` //查看合并的分支提交信息
++ `git branch --nomerged` //查看未合并的分支提交信息
 
 #### 3.4.3 更新
-+ git fetch //从远程仓库（此处默认的仓库为origin）中抓取本地没有的数据
-+ git fetch origin //抓取origin仓库的数据
-+ git fetch test_repo //从test_repo中抓取本地没有的数据
-+ git merge origin/serverfix //将从远程fetch的serverfix分支合入当前分支
-+ git checkout -b serverfix origin/serverfix //创建并切换至serverfix分支，合入来之远程的origin/serverfix分支
-+ git push (remote) (branch) //往remote仓库推送本地的branch分支
-+ git push (remote) (local:dest) //将本地的local分支推送至remote仓库中的dest分支
-+ git push --force  //???
++ `git fetch` //从远程仓库（此处默认的仓库为origin）中抓取本地没有的数据
++ `git fetch origin` //抓取origin仓库的数据
++ `git fetch test_repo` //从test_repo中抓取本地没有的数据
++ `git merge origin/serverfix` //将从远程fetch的serverfix分支合入当前分支
++ `git checkout -b serverfix origin/serverfix` //创建并切换至serverfix分支，合入来之远程的origin/serverfix分支
++ `git push (remote) (branch)` //往remote仓库推送本地的branch分支
++ `git push (remote) (local:dest)` //将本地的local分支推送至remote仓库中的dest分支
++ `git push --force`  //???
 
 ## 3.5 远程分支
 ### 3.5.1 远程仓库与分支
@@ -254,15 +254,15 @@ Git 自带一个 git config 的工具来帮助设置控制 Git 外观和行为
 + 一个仓库里包含多个分支，远程仓库的代称为remote,分支代称为branch。将**远程仓库的默认分支**拉取到本地后的引用为(remote)/(branch)结构，默认名称为origin/master
 + 远程引用：对远程仓库的引用（指针）。
 + 远程跟踪分支：对远程分支状态的引用。 
-+ git remote    //获得远程仓库列表
-+ git ls-remote [remote-repo] //显示获取远程引用完整列表
-+ git remote show [remote-repo] //获得远程分支更多信息
++ `git remote`    //获得远程仓库列表
++ `git ls-remote [remote-repo]` //显示获取远程引用完整列表
++ `git remote show [remote-repo]` //获得远程分支更多信息
 
-+ git clone -o xxx //克隆远程仓库并将远程仓库的默认命名改为xxx
-+ git remote add [remote-repo] [URL] //创建新远程仓库的引用为remote-repo/master
-+ git fetch [remote-repo]   //拉取远程仓库
-+ git fetch --all   //
-+ git merge [remote-repo]/[remote-branch] //将remote-branch合入当前分支
++ `git clone -o xxx` //克隆远程仓库并将远程仓库的默认命名改为xxx
++ `git remote add [remote-repo] [URL]` //创建新远程仓库的引用为remote-repo/master
++ `git fetch [remote-repo]`   //拉取远程仓库
++ `git fetch --all`   //
++ `git merge [remote-repo]/[remote-branch]` //将remote-branch合入当前分支
 
 ### 3.5.1 推送
 + `git push [remote-repo] [remote-branch]`   //推送到远程分支,多见于本地新分支的推送，设有跟踪分支的推送可简化为git push
@@ -300,19 +300,19 @@ Git 自带一个 git config 的工具来帮助设置控制 Git 外观和行为
 + 基本原则：不要对在你的仓库外有副本的分支执行变基。
 
 ### 3.6.1 变基元操作
-+ git checkout testbh   //切换到testbh分支
-+ git rebase master     //在目标基地上进行变基操作，将testbh相对二者最近祖先的变动，作用在master上，得到新的testbh
-+ git checkout master   //切回master
-+ git merge testbh  //master分支快速合入
++ `git checkout testbh`   //切换到testbh分支
++ `git rebase master`     //在目标基地上进行变基操作，将testbh相对二者最近祖先的变动，作用在master上，得到新的testbh
++ `git checkout master`   //切回master
++ `git merge testbh`  //master分支快速合入
 
 ### 3.6.2 多分支变基
-+ git rebase --onto master server client    //取出 client 分支，找出处于 client 分支和 server 分支的共同祖先之后的修改，然后把它们在 master 分支上重放一遍，得到client分支
++ `git rebase --onto master server client`    //取出 client 分支，找出处于 client 分支和 server 分支的共同祖先之后的修改，然后把它们在 master 分支上重放一遍，得到client分支
 
-+ git rebase [basebranch] [topicbranch] //topicbranch在basebranch上变基。
++ `git rebase [basebranch] [topicbranch]` //topicbranch在basebranch上变基。
 
 ### 3.6.3 变基冲突解决
 + 如果对远程仓库的依赖部分发生了变基需要进行二次变基以解决问题。
-+ git rebase [remote/branch]    //remote/branch 为已经发生变基的依赖分支，与git fetch 连用
-+ git pull --rebase //替代git pull 实现变基合并。
++ `git rebase [remote/branch]`    //remote/branch 为已经发生变基的依赖分支，与git fetch 连用
++ `git pull --rebase` //替代git pull 实现变基合并。
 
 
